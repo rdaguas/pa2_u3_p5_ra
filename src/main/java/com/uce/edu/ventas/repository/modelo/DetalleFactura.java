@@ -1,6 +1,5 @@
 package com.uce.edu.ventas.repository.modelo;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -75,9 +74,14 @@ public class DetalleFactura {
 	public void setFactura(Factura factura) {
 		this.factura = factura;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "DetalleFactura [id=" + id + ", cantidad=" + cantidad + ", codigoBarras=" + codigoBarras
+				+ ", nombreProducto=" + nombreProducto +  "]";
+	}
+
+
 	
 
 }
