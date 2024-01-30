@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.uce.edu.ventas.repository.modelo.Factura;
 import com.uce.edu.ventas.repository.modelo.Hotel;
 
 import jakarta.persistence.EntityManager;
