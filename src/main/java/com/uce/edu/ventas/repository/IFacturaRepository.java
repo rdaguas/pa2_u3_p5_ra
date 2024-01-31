@@ -1,8 +1,10 @@
 package com.uce.edu.ventas.repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.uce.edu.ventas.repository.modelo.Factura;
+import com.uce.edu.ventas.repository.modelo.dto.FacturaDto;
 
 public interface IFacturaRepository {
 	
@@ -16,7 +18,14 @@ public interface IFacturaRepository {
 	public List<Factura> seleccionarFacturasWhereJoin();
 	public List<Factura> seleccionarFacturasFetchJoin();
 
-
+	
+	public void actualizar(Factura factura);
+	public int actualizarFechas(LocalDateTime fechaNueva, LocalDateTime fechaActual);
+	public void eliminar(Integer id);
+	public int eliminarPorNumero(String numero);
+	
+	public List<FacturaDto> seleccionarFacturasDto();
+	
 
 
 
