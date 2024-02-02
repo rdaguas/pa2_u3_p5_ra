@@ -11,6 +11,8 @@ public interface IHotelService {
 	public List<Hotel> buscarHotelRightJoin();
 	public List<Hotel> buscarHotelLeftJoin();
 	public List<Hotel> buscarHotelFullJoin();
+	public List<Hotel> buacarHotelFetchJoin();
+
 	
 
 

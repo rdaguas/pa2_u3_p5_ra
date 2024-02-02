@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.uce.edu.ventas.repository.modelo.Factura;
 import com.uce.edu.ventas.repository.modelo.Hotel;
 
 import jakarta.persistence.EntityManager;
@@ -65,6 +66,15 @@ public class HotelRepositoryImpl implements IHotelRepository {
 			f.getHabitaciones().size();
 		}
 		return lista;
+	}
+
+	@Override
+	public List<Hotel> seleccionarHotelFetchJoin() {
+		// TODO Auto-generated method stub
+		TypedQuery<Hotel> myQuery = this.entityManager
+				.createQuery("SELECT f FROM Hotel f JOIN FETCH f.habitaciones d", Hotel.class);
+		return myQuery.getResultList();
+	
 	}
 
 }

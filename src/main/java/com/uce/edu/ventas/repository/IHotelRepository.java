@@ -11,4 +11,6 @@ public interface IHotelRepository {
 	public List<Hotel> seleccionarHotelRightJoin();
 	public List<Hotel> seleccionarHotelLeftJoin();
 	public List<Hotel> seleccionarHotelFullJoin();
+	public List<Hotel> seleccionarHotelFetchJoin();
+
 }
