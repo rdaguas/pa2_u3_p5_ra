@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
-import com.uce.edu.ventas.repository.IClienteRepository;
 import com.uce.edu.ventas.repository.IFacturaRepository;
 import com.uce.edu.ventas.repository.modelo.Cliente;
 import com.uce.edu.ventas.repository.modelo.Factura;
@@ -22,7 +21,7 @@ public class FacturaServiceImpl implements IFacturaService {
 	private IFacturaRepository facturaRepository;
 	
 	@Autowired
-	private IClienteRepository clienteRepository;
+	private IClienteService clienteService;
 	
 	@Override
 	public Factura buscarPorNumero(String numero) {
@@ -31,13 +30,13 @@ public class FacturaServiceImpl implements IFacturaService {
 	}
 
 	@Override
-	@Transactional(value = TxType.REQUIRES_NEW)
+	@Transactional(value = TxType.REQUIRED)
 	public void guardar(Factura factura, Cliente cliente) {
 		// TODO Auto-generated method stub
 		System.out.println(TransactionSynchronizationManager.isActualTransactionActive());
 		this.facturaRepository.insertar(factura);
 		System.out.println("Paso el insert de Factura");
-		this.clienteRepository.insertar(cliente);
+		this.clienteService.guardar(cliente);
 		System.out.println("Paso el insert de Cliente");
 
 	}
@@ -100,6 +99,15 @@ public class FacturaServiceImpl implements IFacturaService {
 	public List<FacturaDto> buscarFacturasDto() {
 		// TODO Auto-generated method stub
 		return this.facturaRepository.seleccionarFacturasDto();
+	}
+
+	@Override
+	@Transactional(value = TxType.MANDATORY)
+	public void prueba() {
+		// TODO Auto-generated method stub
+		System.out.println("ESTE METODO ES DE PRUEBA");
+		System.out.println("Prueba: "+TransactionSynchronizationManager.isActualTransactionActive());
+
 	}
 
 }
