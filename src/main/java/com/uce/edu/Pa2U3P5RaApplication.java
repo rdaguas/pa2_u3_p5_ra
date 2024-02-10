@@ -1,7 +1,5 @@
 package com.uce.edu;
 
-import java.time.LocalDateTime;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -9,8 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import com.uce.edu.ventas.repository.IClienteRepository;
-import com.uce.edu.ventas.repository.modelo.Cliente;
-import com.uce.edu.ventas.repository.modelo.Factura;
+import com.uce.edu.ventas.service.IClienteService;
 import com.uce.edu.ventas.service.IFacturaService;
 
 @SpringBootApplication
@@ -20,7 +17,7 @@ public class Pa2U3P5RaApplication implements CommandLineRunner {
 	private IFacturaService facturaService;
 	
 	@Autowired
-	private IClienteRepository clienteRepository;
+	private IClienteService clienteService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U3P5RaApplication.class, args);
@@ -30,23 +27,11 @@ public class Pa2U3P5RaApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		
-		System.out.println(TransactionSynchronizationManager.isActualTransactionActive());
+		System.out.println("main: " +TransactionSynchronizationManager.isActualTransactionActive());
 		
+		//this.facturaService.pruebaSupport2();
+		//this.facturaService.pruebaNever();
 		
-		Factura fact = new Factura();
-		fact.setNumero("001-008");
-		fact.setCedula("122410");
-		fact.setFecha(LocalDateTime.now());
-		
-		
-		Cliente clie = new Cliente();
-		clie.setApellido(null);
-		clie.setNombre("Jesus");
-		//this.facturaService.guardar(fact, clie);
-		
-		System.out.println("MAIN: "+TransactionSynchronizationManager.isActualTransactionActive());
-
-		this.facturaService.prueba();
 	}
 
 }

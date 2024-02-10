@@ -1,5 +1,6 @@
 package com.uce.edu.ventas.service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -33,6 +34,10 @@ public class FacturaServiceImpl implements IFacturaService {
 	@Transactional(value = TxType.REQUIRED)
 	public void guardar(Factura factura, Cliente cliente) {
 		// TODO Auto-generated method stub
+		
+		BigDecimal valor = new BigDecimal(100);
+		
+		
 		System.out.println(TransactionSynchronizationManager.isActualTransactionActive());
 		this.facturaRepository.insertar(factura);
 		System.out.println("Paso el insert de Factura");
@@ -108,6 +113,38 @@ public class FacturaServiceImpl implements IFacturaService {
 		System.out.println("ESTE METODO ES DE PRUEBA");
 		System.out.println("Prueba: "+TransactionSynchronizationManager.isActualTransactionActive());
 
+	}
+
+	@Override
+	public List<Factura> buscarTodos() {
+		// TODO Auto-generated method stub
+		return this.facturaRepository.seleccionarTodos();
+	}
+
+	
+	
+	public void pruebaSupport1() {
+		// TODO Auto-generated method stub
+		//System.out.println("Este es un metodo SUPPORTS");
+		System.out.println("Prueba Factura: "+TransactionSynchronizationManager.isActualTransactionActive());
+		this.clienteService.pruebaSupports();
+	}
+	
+	@Override
+	@Transactional(value = TxType.REQUIRED)
+	public void pruebaSupport2() {
+		// TODO Auto-generated method stub
+		//System.out.println("Este es un metodo SUPPORTS");
+		System.out.println("Prueba Factura: "+TransactionSynchronizationManager.isActualTransactionActive());
+		this.clienteService.pruebaSupports();
+	}
+
+	@Override
+	@Transactional(value = TxType.REQUIRES_NEW)
+	public void pruebaNever() {
+		// TODO Auto-generated method stub
+		System.out.println("Prueba Factura: "+TransactionSynchronizationManager.isActualTransactionActive());
+		this.clienteService.pruebaNever();
 	}
 
 }
